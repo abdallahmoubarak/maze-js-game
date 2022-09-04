@@ -67,6 +67,17 @@ window.addEventListener("DOMContentLoaded", function () {
       boundary[j].style.borderColor = color;
     }
   }
+  // restart the game
+  start.addEventListener("click", function () {
+    score = 0;
+    gameOn = false;
+    heighestScore = 0;
+    boundary = document.getElementsByClassName("boundary");
+    for (var j = 0; j < boundary.length; j++) {
+      boundary[j].style.borderColor = "black";
+    }
+    status.innerHTML = "Begin by moving your mouse over the 'S'.";
+  });
 
   // additional features
 });
