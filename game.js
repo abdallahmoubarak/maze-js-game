@@ -79,9 +79,21 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // restart the game
+  start.addEventListener("click", function () {
+    score = 0;
+    gameOn = false;
+    heighestScore = 0;
+    boundary = document.getElementsByClassName("boundary");
+    for (var j = 0; j < boundary.length; j++) {
+      boundary[j].style.borderColor = "black";
+    }
+    status.innerHTML = "Begin by moving your mouse over the 'S'.";
+  });
+
   // additional features
   controller.innerHTML =
-    "<div style='display:flex;gap:.8rem;font-size:1.2rem;justify-content:center;'><input id='userNameInput'  style='font-size:1.2rem;padding:.2rem 1rem;border-radius:.3rem;border:1px solid #8888ff;' placeholder='your name'/> <div>heighest score: <span id='hscore'>0</span></div> <button id='savebtn' style='background:black;border:none;color:white;font-size:1.2rem;padding:.2rem 1rem;border-radius:.3rem;cursor:pointer'>save</button></div>";
+    "<div style='display:flex;gap:3rem;font-size:1.2rem;justify-content:center;'><div class='display:flex;flex-direction:column'><input id='userNameInput'  style='font-size:1.2rem;padding:.2rem 1rem;border-radius:.3rem;border:1px solid #8888ff;' placeholder='Your name'/> <div style='padding:.4rem 1rem'>Heighest score: <span id='hscore'>0</span></div></div><div style='display:flex;flex-direction:column'><button id='savebtn' style='background:black;border:none;color:white;font-size:1.2rem;padding:.2rem 1rem;border-radius:.3rem;cursor:pointer'>Save</button><button id='timerbtn' style='background:#8888ff;border:none;color:white;font-size:1.2rem;width:5rem;padding:.3rem 1rem;border-radius:.3rem;cursor:pointer'>Timer</button></div></div>";
 
   var userNameInput = document.getElementById("userNameInput");
   // updateScore from localstorage depending on user
@@ -113,6 +125,31 @@ window.addEventListener("DOMContentLoaded", function () {
       score = 0;
     } else {
       status.innerHTML = "Please, use proper username";
+    }
+  });
+
+  // setting timer
+  var seconds = 10;
+  var timer;
+  var timerbtn = document.getElementById("timerbtn");
+  timerbtn.addEventListener("click", function () {
+    score = 0;
+    if (!timer) {
+      timer = setInterval(function () {
+        timerbtn.style.backgroundColor = "#88ff88";
+        timerbtn.style.color = "black";
+
+        if (seconds > 0) {
+          timerbtn.innerHTML = seconds;
+          seconds--;
+        } else {
+          clearInterval(timer);
+          timerbtn.innerHTML = "Timer";
+          seconds = 10;
+          timer = null;
+          status.innerHTML = "Your score is " + score;
+        }
+      }, 1000);
     }
   });
 });
