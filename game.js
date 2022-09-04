@@ -18,6 +18,10 @@ window.addEventListener("DOMContentLoaded", function () {
   // functions
   function startGame() {
     gameOn = true;
+    status.innerHTML =
+      "<div style='display:flex;gap:10rem;justify-content:center;color:green'><div>Game Starts </div><div>Score: " +
+      score +
+      "</div></div>";
   }
   function gameOver() {
     if (gameOn) {
@@ -56,4 +60,6 @@ window.addEventListener("DOMContentLoaded", function () {
       score +
       "</div></div>";
   }
+
+  // additional features
 });
