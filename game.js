@@ -24,7 +24,7 @@ window.addEventListener("DOMContentLoaded", function () {
       "</div></div>";
     boundary = document.getElementsByClassName("boundary");
     for (var j = 0; j < boundary.length; j++) {
-      boundary[j].style.borderColor = color;
+      boundary[j].style.borderColor = 'green';
     }
   }
   function gameOver() {
