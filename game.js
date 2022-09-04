@@ -30,6 +30,10 @@ window.addEventListener("DOMContentLoaded", function () {
       "<div style='display:flex;gap:10rem;justify-content:center;color:green'><div>Game Starts </div><div>Score: " +
       score +
       "</div></div>";
+    boundary = document.getElementsByClassName("boundary");
+    for (var j = 0; j < boundary.length; j++) {
+      boundary[j].style.borderColor = "green";
+    }
   }
   function gameOver() {
     if (gameOn) {
@@ -47,21 +51,19 @@ window.addEventListener("DOMContentLoaded", function () {
 
   function updateScore(s) {
     if (s) {
-      score = score + 1;
+      score = score + 5;
       if (score > parseInt(heighestScore)) {
         heighestScore = score;
         document.getElementById("hscore").innerHTML = heighestScore;
       }
     } else {
-      if (score > 0) {
-        score = score - 1;
-      }
+      score = score - 10;
     }
     updateStatus(s);
   }
 
   function updateStatus(state) {
-    var strStat = state ? "won" : "lose";
+    var strStat = state ? " win" : " lose";
     var color = state ? "green" : "red";
     status.innerHTML =
       "<div style='display:flex;gap:10rem;justify-content:center;color:" +
@@ -71,11 +73,15 @@ window.addEventListener("DOMContentLoaded", function () {
       "</div><div>Score: " +
       score +
       "</div></div>";
+    boundary = document.getElementsByClassName("boundary");
+    for (var j = 0; j < boundary.length; j++) {
+      boundary[j].style.borderColor = color;
+    }
   }
 
   // additional features
   controller.innerHTML =
-    "<div style='display:flex;gap:1rem;font-size:1.2rem;justify-content:center;'><input id='userNameInput'  style='font-size:1.2rem;padding:.2rem 1rem;border-radius:.3rem;border:1px solid #8888ff;' placeholder='your name'/> <div>heighest score: <span id='hscore'>0</span></div> <button id='savebtn' style='background:black;border:none;color:white;font-size:1.2rem;padding:.2rem 1rem;border-radius:.3rem;cursor:pointer'>save</button></div>";
+    "<div style='display:flex;gap:.8rem;font-size:1.2rem;justify-content:center;'><input id='userNameInput'  style='font-size:1.2rem;padding:.2rem 1rem;border-radius:.3rem;border:1px solid #8888ff;' placeholder='your name'/> <div>heighest score: <span id='hscore'>0</span></div> <button id='savebtn' style='background:black;border:none;color:white;font-size:1.2rem;padding:.2rem 1rem;border-radius:.3rem;cursor:pointer'>save</button></div>";
 
   var userNameInput = document.getElementById("userNameInput");
   // updateScore from localstorage depending on user
