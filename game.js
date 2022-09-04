@@ -22,6 +22,10 @@ window.addEventListener("DOMContentLoaded", function () {
       "<div style='display:flex;gap:10rem;justify-content:center;color:green'><div>Game Starts </div><div>Score: " +
       score +
       "</div></div>";
+    boundary = document.getElementsByClassName("boundary");
+    for (var j = 0; j < boundary.length; j++) {
+      boundary[j].style.borderColor = color;
+    }
   }
   function gameOver() {
     if (gameOn) {
@@ -39,17 +43,15 @@ window.addEventListener("DOMContentLoaded", function () {
 
   function updateScore(s) {
     if (s) {
-      score = score + 1;
+      score = score + 5;
     } else {
-      if (score > 0) {
-        score = score - 1;
-      }
+      score = score - 10;
     }
     updateStatus(s);
   }
 
   function updateStatus(state) {
-    var strStat = state ? "won" : "lose";
+    var strStat = state ? " won" : " lose";
     var color = state ? "green" : "red";
     status.innerHTML =
       "<div style='display:flex;gap:10rem;justify-content:center;color:" +
@@ -59,6 +61,11 @@ window.addEventListener("DOMContentLoaded", function () {
       "</div><div>Score: " +
       score +
       "</div></div>";
+
+    boundary = document.getElementsByClassName("boundary");
+    for (var j = 0; j < boundary.length; j++) {
+      boundary[j].style.borderColor = color;
+    }
   }
 
   // additional features
